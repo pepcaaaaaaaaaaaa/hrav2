@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hraaa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="obrazky/srdce.png">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="game-ui">
+            <div>
+                <span class="score-label">Score</span>
+                <span id="scoreEl" class="score-value">0</span>
+            </div>
+            <div>
+                <span class="high-score-label">Best</span>
+                <span id="highScoreEl" class="high-score-value">0</span>
+            </div>
+        </div>
+
+        <div id="loveMessage" class="hidden" style="position: absolute; width: 100%; text-align: center; top: 40%; color: white; font-family: 'Fredoka One', cursive; font-size: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 1000; pointer-events: none;"></div>
+
+        <canvas id="gameCanvas"></canvas>
+
+       <div class="mobile-controls">
+    <button id="btnLeft" class="ctrl-btn"></button>
+    <button id="btnRight" class="ctrl-btn"></button>
+</div>
+
+        <div id="startOverlay" class="overlay">
+            <h1 style="color: white; font-family: 'Fredoka One'; margin-bottom: 20px;">Jsou 3 levely</h1>
+            <button id="startBtn" class="btn-start">Hrát</button>
+        </div>
+
+        <div id="gameOverOverlay" class="overlay hidden">
+            <h1 style="color: white; font-family: 'Fredoka One';">Konec hry</h1>
+            <p style="color: white; font-size: 20px;">Skóre: <span id="finalScoreEl">0</span></p>
+            <button id="restartBtn" class="btn-start" style="margin-top: 20px;">Zkusit znovu</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="espresso-lofichill.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,164 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Tvoje růžové pozadí na celou obrazovku */
+    background-color: #e689ab; 
+    background-image: url(''); 
+    background-size: cover;
+    background-position: center;
+    font-family: "Nunito", sans-serif;
+    display: flex;
+    justify-content: center; /* Vycentrování hry vodorovně */
+}
+
+.game-wrapper {
+    position: relative;
+    /* Hra bude mít max 480px, na menších mobilech se zúží */
+    width: 100%;
+    max-width: 480px; 
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1); /* Jemný podklad pod hrou */
+    box-shadow: 0 0 50px rgba(0,0,0,0.3); /* Stín, aby hra vynikla */
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    touch-action: none;
+}
+
+/* UI zůstává stejné, jen se drží uvnitř wrapperu */
+.game-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Sjednocení stylu popisku a čísla */
+.score-label,
+.high-score-label,
+.score-value,
+.high-score-value {
+  font-family: "Fredoka One", cursive; /* Všechno bude stejným fontem */
+  font-size: 24px; /* Stejná velikost pro text i číslo */
+  color: #fff; /* Základní barva bílá */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+}
+
+/* Specifická barva pro rekord (pokud ho chceš pořád žlutý) */
+.high-score-label,
+.high-score-value {
+  color: #ffd93d; 
+}
+
+/* Zmenšení mezery mezi textem a číslem */
+.score-label,
+.high-score-label {
+  margin-right: 4px; /* Tady ovládáš tu mezeru - čím menší číslo, tím blíž u sebe to bude */
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(228, 120, 160, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.hidden { display: none !important; }
+
+.btn-start {
+    padding: 15px 40px;
+    font-family: "Fredoka One", cursive;
+    font-size: 1.5rem;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #c9184a;
+}
+
+.mobile-controls {
+    position: absolute;
+    /* Změna z 40px na 12vh (12 % výšky obrazovky) */
+    /* To posune tlačítka výš, aby se lépe mačkala palci */
+    bottom: 12vh; 
+    
+    /* Tato řádka je pojistka pro telefony s "výřezem" dole (iOS) */
+    padding-bottom: env(safe-area-inset-bottom); 
+
+    left: 0;
+    right: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.ctrl-btn {
+    pointer-events: auto;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    position: relative; /* Důležité pro umístění vnitřní šipky */
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- TVORBA ŠIPEK POMOCÍ CSS ČAR (VŽDY NA STŘEDU) --- */
+.ctrl-btn::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-left: 5px solid white;
+    border-bottom: 5px solid white;
+    display: block;
+}
+
+/* Otočení šipky doleva */
+#btnLeft::before {
+    transform: rotate(45deg);
+    margin-left: 8px; /* Optické vyrovnání špičky */
+}
+
+/* Otočení šipky doprava */
+#btnRight::before {
+    transform: rotate(-135deg);
+    margin-right: 8px; /* Optické vyrovnání špičky */
+}
+
+.ctrl-btn:active {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0.92);
+}
+
+
